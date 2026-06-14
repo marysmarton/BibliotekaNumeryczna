@@ -3,6 +3,6 @@
 
 #include <string>
 
-void eliminacja_gaussa(std::string nazwa);
+void eliminacja_gaussa(std::string nazwa_pliku);
 
 #endif
