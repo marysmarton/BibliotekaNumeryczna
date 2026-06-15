@@ -83,7 +83,7 @@ void zapiszDoExcelaInterp(const vector<InterpPoint>& allPoints, const vector<Int
 }
 
 // Główna funkcja wywoływana z poziomu menu
-void metoda_interpolacji()
+void interpolacja_newtona()
 {
     ifstream file("data/interpolacja_n.txt"); //ścieżka dostosowana do folderu data/
     if (!file)
