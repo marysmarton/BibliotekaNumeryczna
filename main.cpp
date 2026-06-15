@@ -72,7 +72,7 @@ int main()
 
         case 3:
         {
-            horner_program();
+            metoda_hornera();
             break;
         }
 
