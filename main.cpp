@@ -22,20 +22,19 @@ void wyswietl_menu()
     cout << "==========================================================" << endl;
     cout << endl;
 
-    cout << " 1. Wczytywanie danych z plikow" << endl;
-    cout << " 2. Interpolacja Lagrange'a" << endl;
-    cout << " 3. Interpolacja Newtona" << endl;
-    cout << " 4. Schemat Hornera" << endl;
-    cout << " 5. Eliminacja Gaussa" << endl;
-    cout << " 6. Rozklad LU" << endl;
-    cout << " 7. Calkowanie numeryczne" << endl;
-    cout << " 8. Aproksymacja sredniokwadratowa" << endl;
-    cout << " 9. Metoda Eulera" << endl;
-    cout << "10. Metoda Heuna" << endl;
-    cout << "11. Metoda punktu srodkowego" << endl;
-    cout << "12. Metoda Rungego-Kutty IV rzedu" << endl;
-    cout << "13. Metoda bisekcji i falszywej linii" << endl;
-    cout << "14. Metoda Newtona i metoda siecznych" << endl;
+    cout << " 1. Interpolacja Lagrange'a" << endl;
+    cout << " 2. Interpolacja Newtona" << endl;
+    cout << " 3. Schemat Hornera" << endl;
+    cout << " 4. Eliminacja Gaussa" << endl;
+    cout << " 5. Rozklad LU" << endl;
+    cout << " 6. Calkowanie numeryczne" << endl;
+    cout << " 7. Aproksymacja sredniokwadratowa" << endl;
+    cout << " 8. Metoda Eulera" << endl;
+    cout << " 9. Metoda Heuna" << endl;
+    cout << "10. Metoda punktu srodkowego" << endl;
+    cout << "11. Metoda Rungego-Kutty IV rzedu" << endl;
+    cout << "12. Metoda bisekcji i falszywej linii" << endl;
+    cout << "13. Metoda Newtona i metoda siecznych" << endl;
     cout << endl;
     cout << " 0. Wyjscie z programu" << endl;
     cout << endl;
@@ -61,97 +60,71 @@ int main()
 
         case 1:
         {
-            string nazwa;
-
-            cout << "Podaj nazwe pliku: ";
-            cin >> nazwa;
-
-            if (nazwa == "dane_3.txt")
-            {
-                wczytaj_dane3("data/" + nazwa, "output/wynik_dane3.csv");
-            }
-            else
-            {
-                vector<Punkt> dane;
-
-                wczytaj_dane1("data/" + nazwa, dane);
-
-                if (!dane.empty())
-                {
-                    zapisz_csv("output/wynik.csv", dane);
-                }
-            }
-
+            interpolacja_lagrange();
             break;
         }
 
         case 2:
         {
-            interpolacja_lagrange();
+            interpolacja_newtona();
             break;
         }
 
         case 3:
         {
-            interpolacja_newtona();
+            horner_program();
             break;
         }
 
         case 4:
         {
-            horner_program();
+            eliminacja_gaussa("data/Gauss.txt");
             break;
         }
 
         case 5:
         {
-            eliminacja_gaussa("data/Gauss.txt");
+            metoda_LU("data/LU.txt");
             break;
         }
 
         case 6:
         {
-            metoda_LU("data/LU.txt");
+            metoda_calkowania();
             break;
         }
 
         case 7:
         {
-            metoda_calkowania();
+            metoda_aproksymacji();
             break;
         }
 
         case 8:
         {
-            metoda_aproksymacji();
+            metoda_eulera();
             break;
         }
 
         case 9:
         {
-            metoda_eulera();
+            metoda_heuna();
             break;
         }
 
         case 10:
         {
-            metoda_heuna();
+            metoda_punktu_srodkowego();
             break;
         }
 
         case 11:
         {
-            metoda_punktu_srodkowego();
-            break;
-        }
-
-        case 12:
-        {
             metoda_kutty();
             break;
         }
 
-        case 13:
+        case 12:
         {
             double a, b, eps;
             int n;
