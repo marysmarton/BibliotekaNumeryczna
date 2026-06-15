@@ -9,6 +9,7 @@
 
 using namespace std;
 
+//struktura pijedynczego punktu na dwuwymiarowej plaszczyznie zawierajaca jego wspolrzedne x i y
 struct InterpPoint
 {
     double x, y;
@@ -16,6 +17,7 @@ struct InterpPoint
 
 // Funkcja pomocnicza wczytująca liczby z pliku
 // Funkcja pomocnicza wyciagajaca liczby z konkretnej linii tekstu na podstawie podanego prefiksu (np. "xi:")
+//przyjmuje parametr line - biexzaca linia tekstu oraz prefix - ciag znakow ktorych szuka program, aby wiedziec, gdzie zaczac czytac liczby
 vector<double> extractNumbersInterp(const string& line, const string& prefix)
 {
     vector<double> numbers;
@@ -34,6 +36,7 @@ vector<double> extractNumbersInterp(const string& line, const string& prefix)
 
 // Algorytm wielomianu interpolacyjnego Newtona
 // Algorytm wyznaczajacy wartosc wielomianu interpolacyjnego Newtona w zadanym punkcie x
+//przyjmuje argumenty nodes - tablica zadanych wezlow interpolacyjnych, przez ktore wielomian musi przejsc oraz x - wzadany punkt x wktorym sie oblicza wartosc wielomianu
 double obliczNewtonInterp(const vector<InterpPoint>& nodes, double x)
 {
     size_t n = nodes.size();
