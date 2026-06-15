@@ -11,6 +11,7 @@
 using namespace std;
 
 // Metoda tradycyjna
+// Obliczanie wartości wielomianu metodą klasyczną
 double potegaNaturalna(const vector<double>& a, double x) 
 {
     double wynik = 0;
@@ -22,6 +23,7 @@ double potegaNaturalna(const vector<double>& a, double x)
 }
 
 // Algorytm Hornera
+// Obliczanie wartości wielomianu za pomocą schematu Hornera
 double horner(const vector<double>& a, double x) 
 {
     double wynik = a.back();
@@ -33,8 +35,10 @@ double horner(const vector<double>& a, double x)
 }
 
 // Główna funkcja wywoływana z poziomu menu
+// Główna funkcja wczytująca dane i porównująca wydajność obu metod
 void metoda_hornera() 
 {
+    // Otwieranie pliku z danymi
     ifstream file("data/interpolacja_h.txt"); // ścieżka dostosowana do folderu data/
     if (!file) 
     {
@@ -45,7 +49,7 @@ void metoda_hornera()
     string line;
     vector<double> a_coeffs, xi_values;
     bool foundSection = false;
-
+// Wczytywanie współczynników wielomianu oraz punktów xi z pliku
     while (getline(file, line))
     {
         if (line.find("l.p.: 5") != string::npos) foundSection = true;
@@ -73,12 +77,13 @@ void metoda_hornera()
     }
     file.close();
 
+    // Sprawdzenie poprawności wczytanych danych
     if (a_coeffs.empty() || xi_values.empty())
     {
         cout << "Blad: Brak danych w sekcji 5 pliku interpolacja_h.txt" << endl;
         return;
     }
-
+// Wyświetlenie nagłówka tabeli wyników
     cout << "=========================================================================================" << endl;
     cout << "Porownanie wydajnosci - metoda natyralna vs schemat Hornera" << endl;
     cout << "=========================================================================================" << endl;
@@ -86,25 +91,28 @@ void metoda_hornera()
     cout << "n\tLiczba wsp.\tCzas Naturalna [ns]\tCzas Horner [ns]\tWynik (Horner)" << endl;
     cout << "-----------------------------------------------------------------------------------------" << endl;
 
+    // Testowanie wielomianów o rosnącym stopniu
     for (size_t n = 3; n <= a_coeffs.size(); n++) 
     {
         vector<double> sub_a(a_coeffs.begin(), a_coeffs.begin() + n);
 
         // Pomiar dla metody tradycyjnej
+        // Pomiar czasu obliczeń metodą klasyczną
         auto start1 = chrono::high_resolution_clock::now();
         double res1 = 0;
         for (double x : xi_values) res1 = potegaNaturalna(sub_a, x);
         auto end1 = chrono::high_resolution_clock::now();
 
         // Pomiar dla schematu Hornera
+        // Pomiar czasu obliczeń schematem Hornera
         auto start2 = chrono::high_resolution_clock::now();
         double res2 = 0;
         for (double x : xi_values) res2 = horner(sub_a, x);
         auto end2 = chrono::high_resolution_clock::now();
-
+// Obliczenie czasu wykonania obu metod
         auto diff1 = chrono::duration_cast<chrono::nanoseconds>(end1 - start1).count();
         auto diff2 = chrono::duration_cast<chrono::nanoseconds>(end2 - start2).count();
-
+//Wyswietlenie porownania wynikow czasow
         cout << n - 1 << "\t" << n << "\t\t" << diff1 << "\t\t\t" << diff2 << "\t\t" << res2 << endl;
     }
 }
