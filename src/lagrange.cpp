@@ -85,7 +85,7 @@ void zapisz_csv(const string& filename, const vector<LagrangePoint>& allData, co
 }
 
 // Główna funkcja wywoływana przez menu główne
-void metoda_lagrange() 
+void interpolacja_lagrange() 
 {
     ifstream file("data/dane1.txt"); //ścieżka dostosowana do folderu data/
     if (!file) 
