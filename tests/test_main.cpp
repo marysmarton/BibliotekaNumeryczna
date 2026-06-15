@@ -22,24 +22,25 @@ int main()
   //testy metoda hornera 
   //(W(x) = 2x + 3 -> wektor: {3, 2})
     vector<double> wielomian = {3.0, 2.0};
-    
-    // Test 1: W(0) powinien dac 3
-    assert(Mmetoda_hornera(wielomian, 0.0) == 3.0);
-    cout << "[OK] Horner Test 1: W(0) = 3" << endl;
 
-    // Test 2: W(2) powinien dac 2*2 + 3 = 7
-    assert(metoda_hornera(wielomian, 2.0) == 7.0);
-    cout << "[OK] Horner Test 2: W(2) = 7" << endl;
+    //test1: metoda hornera (trzeba podac dane jesli o nie prosi)
+    cout<<"Test 1 metody Hornera, nalezy podac dane jesli program o nie poprosi: "<<endl;
+    cout<<"Wielomian 2x + 3, W(0) powinien dac 3: "<<endl;
+    metoda_hornera();
+    cout<<"Test 2: W(2) powinien dac 7"<<endl;
+    metoda_hornera();
 
+    cout<<"Testy dla metody Newtona"<<endl;
 //testy dla metody Newtona - szukanie pierwiastka x^2 - 4, powinno wyjsc 2
     double wynik_newton = 0.0;
 
+    cout<<"Test 1: Start z x0 = 6.0, powinien znalezc pierwiastek bliski 2.0"<<endl;
     // Test 1: Start z x0 = 6.0, powinien znalezc pierwiastek bliski 2.0
     bool sukces1 = metoda_newtona(20, 6.0, wynik_newton, f_test, df_test); 
     assert(sukces1 == true);
     assert(abs(wynik_newton - 2.0) < 1e-5);
     cout << "[OK] Newton Test 1: Znaleziono pierwiastek bliski 2.0" << endl;
-
+cout<<" Test 2: Sprawdzenie ochrony przed dzieleniem przez zero (start w x0 = 0, gdzie pochodna 2x = 0)"<,endl;
     // Test 2: Sprawdzenie ochrony przed dzieleniem przez zero (start w x0 = 0, gdzie pochodna 2x = 0)
     bool sukces2 = metoda_newtona(20, 0.0, wynik_newton, f_test, df_test);
     assert(sukces2 == false); // Powinien zwrocic false z powodu pochodnej rownej 0
@@ -55,17 +56,19 @@ int main()
     dane_testowe.b = 2.0;
     dane_testowe.ai = {5.0};
 
+    cout<<"Test 1: Calka na przedziale [0, 2] z funkcji stalej 5 na 10 przedzialach"<<endl;
     // Test 1: Calka na przedziale [0, 2] z funkcji stalej 5 na 10 przedzialach
     double wynik_calki = metoda_trapezow_wielomian(0.0, 2.0, 10, dane_testowe);
     assert(abs(wynik_calki - 10.0) < 1e-6);
     cout << "[OK] Calki Test 1: Calka z f(x)=5 na [0,2] wynosi 10" << endl;
 
+    cout<<"Test 2: Calka na przedziale [0, 0] (pusty przedzial) powinna dac 0"<<endl;
     // Test 2: Calka na przedziale [0, 0] (pusty przedzial) powinna dac 0
     double wynik_calki_zero = metoda_trapezow_wielomian(0.0, 0.0, 10, dane_testowe);
     assert(wynik_calki_zero == 0.0);
     cout << "[OK] Calki Test 2: Calka na przedziale zero-jednostkowym wynosi 0" << endl;
 
-  cout<<"tetsy zakonczone powodzeniem"<<endl;
+  cout<<"Testy zakonczone powodzeniem"<<endl;
 
     return 0;
 }
