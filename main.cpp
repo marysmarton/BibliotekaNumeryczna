@@ -1,15 +1,16 @@
 #include <iostream>
-#include "pliki.h"
-#include "lagrange.h"
-#include "newton_interp.h"
-#include "horner.h"
-#include "gauss.h"
-#include "lu.h"
-#include "calki.h"
 #include "aproksymacja.h"
+#include "bisekcja.h"
+#include "calki.h"
 #include "euler.h"
-#include "heun.h"
-#include "miejsca_zerowe.h"
+#include "gauss.h"
+#include "horner.h"
+#include "interpolacja.h"
+#include "lagrange.h"
+#include "lu.h"
+#include "newton.h"
+#include "pliki.h"
+#include "rk.h"
 
 using namespace std;
 
