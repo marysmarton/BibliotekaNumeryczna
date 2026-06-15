@@ -20,11 +20,11 @@ int main()
     vector<double> wielomian = {3.0, 2.0};
     
     // Test 1: W(0) powinien dac 3
-    assert(horner(wielomian, 0.0) == 3.0);
+    assert(Mmetoda_hornera(wielomian, 0.0) == 3.0);
     cout << "[OK] Horner Test 1: W(0) = 3" << endl;
 
     // Test 2: W(2) powinien dac 2*2 + 3 = 7
-    assert(horner(wielomian, 2.0) == 7.0);
+    assert(metoda_hornera(wielomian, 2.0) == 7.0);
     cout << "[OK] Horner Test 2: W(2) = 7" << endl;
 
 //testy dla metody Newtona - szukanie pierwiastka x^2 - 4, powinno wyjsc 2
