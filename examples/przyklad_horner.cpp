@@ -15,7 +15,7 @@ int main()
     // Punkt, dla którego liczymy wartość wielomianu, np. x = 2.0
     double x = 2.0;
 
-    // Wywołanie funkcji z Twojej biblioteki
+    // Wywołanie funkcji z biblioteki
     double wynik = horner(wspolczynniki, x);
 
     cout << "Dla wielomianu W(x) = 2x^3 - 5x^2 + 3x + 7" << endl;
