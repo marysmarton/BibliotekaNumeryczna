@@ -9,7 +9,7 @@ using namespace std;
 typedef vector<vector<double>> Matrix;
 
 // Funkcja pomocnicza do wyświetlania macierzy
-void drukuj_macierz(const Matrix& A) 
+void drukuj_macierz_lu(const Matrix& A) 
 {
     for (const auto& row : A) 
     {
@@ -56,7 +56,7 @@ void metoda_LU(string nazwa_pliku)
     }
 
     cout << "Macierz A: " << endl;
-    drukuj_macierz(A);
+    drukuj_macierz_lu(A);
     cout << endl;
     cout << "wektor b: " << endl;
 
@@ -108,10 +108,10 @@ void metoda_LU(string nazwa_pliku)
 
     cout << endl;
     cout << "Macierz L:" << endl;
-    drukuj_macierz(L);
+    drukuj_macierz_lu(L);
     cout << endl;
     cout << "Macierz U:" << endl;
-    drukuj_macierz(U);
+    drukuj_macierz_lu(U);
 
     cout << endl << "rozwiazywanie ukladu rownan - metoda eliminacji Gaussa: " << endl;
 
@@ -165,5 +165,5 @@ void metoda_LU(string nazwa_pliku)
     }
     cout << endl << endl;
     cout << "Sprawdzenie: " << endl;
-    drukuj_macierz(C);
+    drukuj_macierz_lu(C);
 }
