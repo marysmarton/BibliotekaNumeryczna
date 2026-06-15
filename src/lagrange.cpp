@@ -30,6 +30,7 @@ vector<double> extractNumbersLagrange(const string& line, const string& prefix)
     {
         numbers.push_back(val);
     }
+    //funkcja zwraca liczby wczytane z tekstu
     return numbers;
 }
 
@@ -52,6 +53,7 @@ double lagrange_wlasciwy(const vector<LagrangePoint>& nodes, double x)
         }
         result += term; // Dodawanie wyznaczonego skladnika do ostatecznego wyniku
     }
+    //funkcja zwraca wartosc wielomianu w punkcie z
     return result;
 }
 
