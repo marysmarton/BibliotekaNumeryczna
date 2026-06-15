@@ -31,6 +31,7 @@ vector<double> extractNumbersInterp(const string& line, const string& prefix)
     {
         numbers.push_back(val);
     }
+    //funkcja zwraca liczby wczytane z pliku
     return numbers;
 }
 
@@ -67,7 +68,7 @@ double obliczNewtonInterp(const vector<InterpPoint>& nodes, double x)
         t *= (x - nodes[i - 1].x); // Mnozenie przez kolejne czynniki (x - x_i)
         wynik += d[0][i] * t; // Dodawanie kolejnych skladnikow wielomianu
     }
-
+//funkcja zwraca wartosc wielomianu interpolacyjnego newtona w punkcie x
     return wynik;
 }
 
