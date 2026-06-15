@@ -10,6 +10,7 @@ typedef vector<vector<double>> Matrix;
 
 // Funkcja pomocnicza do wyświetlania macierzy
 // Funkcja wyświetlająca zawartość macierzy
+//przyjmuje jako argument referencje do macierzy A
 void drukuj_macierz_lu(const Matrix& A) 
 {
     for (const auto& row : A) 
@@ -24,6 +25,7 @@ void drukuj_macierz_lu(const Matrix& A)
 
 // Główna funkcja algorytmu rozkładu LU
 // Funkcja wykonująca rozkład LU oraz rozwiązująca układ równań
+//przyjmuje jako argument nazwe pliku tejstowego z ktorego pobiera dane
 void metoda_LU(string nazwa_pliku)
 {// Otwarcie pliku z danymi wejściowymi
     ifstream file(nazwa_pliku);
