@@ -12,7 +12,7 @@ using namespace std;
 double rozwiazanie_dokladne_euler(double t)
 {
     double T = 14935000.0 / pow((79951556409.0 * t) / 2.0 + 15625000000.0, 1.0 / 3.0);
-    return T;
+    return T; //funkcja zwraca wartosc funkcji w punkcie t
 }
 
 // Funkcja wyznaczająca pochodną T'
@@ -24,7 +24,7 @@ double pochodna_euler(double T)
     double beta = 0.0;
     double alfa = -4 * pow(10, -12);
     dT = alfa * (pow(T, 4) - beta);
-    return dT;
+    return dT; //funkcja zwraca pochodna
 }
 
 // Główna funkcja wywoływana z menu, realizująca metodę Eulera
