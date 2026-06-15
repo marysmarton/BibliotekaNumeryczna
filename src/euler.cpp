@@ -6,6 +6,7 @@
 
 using namespace std;
 
+// Funkcja zwracająca rozwiązanie dokładne równania różniczkowego
 // Rozwiązanie dokładne z wyliczoną funkcją z WolframAlpha
 double rozwiazanie_dokladne_euler(double t)
 {
@@ -14,6 +15,7 @@ double rozwiazanie_dokladne_euler(double t)
 }
 
 // Funkcja wyznaczająca pochodną T'
+// Funkcja obliczająca pochodną T' zgodnie z równaniem różniczkowym
 double pochodna_euler(double T)
 {
     double dT = 0.0;
@@ -23,7 +25,7 @@ double pochodna_euler(double T)
     return dT;
 }
 
-// Główna funkcja wywoływana z menu
+// Główna funkcja wywoływana z menu, realizująca metodę Eulera
 void metoda_eulera()
 {
     double T0 = 5974.0;    // temperatura początkowa
@@ -35,18 +37,21 @@ void metoda_eulera()
     vector<double> t(n + 1);
     vector<double> T(n + 1);
 
+    // Inicjalizacja warunków początkowych
     t[0] = t0;
     T[0] = T0;
 
     double suma_kwadratow_bledow = 0.0;
 
     // Pętla metody Eulera wraz z jednoczesnym liczeniem błędów
+    // Iteracyjne wyznaczanie rozwiązania metodą Eulera
     for (int i = 0; i < n; i++)
     {
         t[i + 1] = t[i] + h;
         T[i + 1] = T[i] + h * pochodna_euler(T[i]);
         
         // Obliczanie błędu dla obecnego kroku
+        // Obliczenie błędu względem rozwiązania dokładnego
         double w_dokladna = rozwiazanie_dokladne_euler(t[i + 1]);
         double blad = w_dokladna - T[i + 1];
         suma_kwadratow_bledow += blad * blad;
@@ -56,6 +61,7 @@ void metoda_eulera()
     double sredni_blad_kwadratowy = suma_kwadratow_bledow / (n + 1);
 
     // Drukowanie tabeli wyników
+    // Wyświetlenie wyników w formie tabeli
     cout << "t[s]        T_Euler        T_exact\n";
     cout << "-------------------------------------------\n";
 
