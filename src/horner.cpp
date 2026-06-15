@@ -12,6 +12,7 @@ using namespace std;
 
 // Metoda tradycyjna
 // Obliczanie wartości wielomianu metodą klasyczną
+//przyjmuje tablice a zawierajaca kolejne wspolczynniki wielomianu oraz x - punkt (argument) w ktorym liczy sie wartosc
 double potegaNaturalna(const vector<double>& a, double x) 
 {
     double wynik = 0;
@@ -24,6 +25,7 @@ double potegaNaturalna(const vector<double>& a, double x)
 
 // Algorytm Hornera
 // Obliczanie wartości wielomianu za pomocą schematu Hornera
+//przyjmuje tablice a zawierajaca kolejne wspolczynniki wielomianu oraz x - punkt (argument) w ktorym liczy sie wartosc
 double horner(const vector<double>& a, double x) 
 {
     double wynik = a.back();
