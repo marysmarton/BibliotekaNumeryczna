@@ -8,12 +8,23 @@
 using namespace std;
 
 // Funkcja aproksymowana (wewnętrzna)
+/**
+ * Definiuje funkcje podstawowa (wewnetrzna), ktora bedzie poddawana procesowi aproksymacji.
+ * double x - Wartosc argumentu dla ktorego liczona jest wartosc funkcji.
+ * return - Wynik dzialania funkcji matematycznej f(x) = e^x * sin(5x) - x^3.
+ */
 double funkcja_podstawowa(double x)
 {
     return exp(x) * sin(5 * x) - pow(x, 3);
 }
 
 // Eliminacja Gaussa do obliczania układu równań AX=B
+/**
+ * Rozwiazuje uklad rownan liniowych AX = B przy uzyciu metody eliminacji Gaussa z podstawowym wyborem elementu osiowego.
+ *parametr A- Macierz wspolczynnikow ukladu (macierz kwadratowa).
+ * parametr B - Wektor wyrazow wolnych.
+ * return vector<double> - Wektor rozwiazan X. Zwraca pusty wektor w przypadku macierzy osobliwej.
+ */
 vector<double> gaussSolveAproksymacja(vector<vector<double>> A, vector<double> b)
 {
     int n = A.size();
@@ -64,6 +75,14 @@ vector<double> gaussSolveAproksymacja(vector<vector<double>> A, vector<double> b
 }
 
 // Metoda Simpsona do obliczania całek pomocniczych
+/**
+ *Oblicza calke oznaczona funkcji na przedziale [a, b] przy uzyciu numerycznej metody Simpsona (metoda parabol).
+ * parametr a Poczatek przedzialu calkowania.
+ * parametr b Koniec przedzialu calkowania.
+ * parametr n Liczba podprzedzialow (musi byc parzysta, w razie potrzeby funkcja ja zwieksza).
+ * parametr f Funkcja podcalkowa przekazywana jako obiekt std::function.
+ * return Wartosc przyblizona calki oznaczonej.
+ */
 double SimpsonAproksymacja(double a, double b, int n, function<double(double)> f)
 {
     if (n % 2 != 0)
@@ -91,6 +110,15 @@ double SimpsonAproksymacja(double a, double b, int n, function<double(double)> f
 }
 
 // Generowanie macierzy i wyznaczanie wektora współczynników
+/**
+ * Generuje macierz ukladu i wektor wyrazow wolnych na podstawie calek pomocniczych, a nastepnie wyznacza wspolczynniki wielomianu.
+ * parametr f Funkcja aproksymowana.
+ * parametr a Poczatek przedzialu aproksymacji ciągłej.
+ * parametr b Koniec przedzialu aproksymacji ciągłej.
+ * parametr stopien Stopien wielomianu aproksymujacego.
+ * parametr simpsonN Liczba podprzedzialow uzywanych do całkowania numerycznego.
+ * return vector<double> Wyznaczony wektor wspolczynnikow wielomianu (a0, a1, a2...).
+ */
 vector<double> wykonaj_aproksymacje(function<double(double)> f, double a, double b, int stopien, int simpsonN)
 {
     int m = stopien + 1;
@@ -127,6 +155,12 @@ vector<double> wykonaj_aproksymacje(function<double(double)> f, double a, double
 }
 
 // Wyznaczanie wartości wielomianu w punkcie x
+/**
+ *  Wyznacza wartosc wielomianu aproksymacyjnego w konkretnym punkcie x na podstawie obliczonych wspolczynnikow.
+ * x Punkt, dla ktorego obliczana jest wartosc.
+ * a Wektor wyznaczonych wspolczynnikow wielomianu.
+ * return Wartosc wielomianu W(x).
+ */
 double oblicz_wielomian_aproksymacji(double x, const vector<double>& a)
 {
     double wynik = 0.0;
@@ -138,6 +172,10 @@ double oblicz_wielomian_aproksymacji(double x, const vector<double>& a)
 }
 
 // Główna funkcja wywoływana przez menu główne (case 8)
+/**
+ * Glowna funkcja modulu aproksymacji wywolywana przez menu glowne programu (case 7).
+ * Konfiguruje parametry startowe, uruchamia obliczenia, wyswietla punkty kontrolne oraz generuje tabele porownawcza.
+ */
 void metoda_aproksymacji()
 {
     // Przedziały całki i konfiguracja struktury wielomianu
