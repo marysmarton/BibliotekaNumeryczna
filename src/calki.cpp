@@ -22,6 +22,7 @@ struct dane_calki
 // Funkcja obliczająca wartość wielomianu w punkcie x na podstawie wczytanych danych
 // Oblicza wartość wielomianu w punkcie x
 // na podstawie współczynników wczytanych z pliku.
+//przyjmuje dane calki przez referencje oraz x dla ktorego jest obliczana wartosc wielomianu
 double oblicz_wartosc_wielomianu(double x, const dane_calki &dane)
 {
     double wynik = 0.0;
@@ -35,6 +36,7 @@ double oblicz_wartosc_wielomianu(double x, const dane_calki &dane)
 // Oblicza całkę metodą kwadratury Gaussa
 // dla 2-, 3- lub 4-punktowej reguły.
 // Dwupunktowa, trzypunktowa i czteropunktowa kwadratura Gaussa zaadaptowana dla wielomianu
+//przyjmuje dane calki przez referencje a takze a - poczatek przedzialu b - koniec przedzialu n - parametr informujacy o tym jaka to kwadratura (ile punktow)
 double GaussWielomian(double a, double b, int n, const dane_calki &dane)
 {
     // Wyznaczenie środka i połowy długości przedziału
@@ -78,6 +80,7 @@ double GaussWielomian(double a, double b, int n, const dane_calki &dane)
 // Kwadratura złożona Gaussa dla wielomianu
 // Realizacja złożonej kwadratury Gaussa
 // poprzez podział przedziału na mniejsze części.
+//przyjmuje granice przedzialu a i b, liczbe przedzialow, dane calki w postaci referencji oraz informacje o rodzaju kwadratury (n)
 double kwadratura_zlozona_wielomian(double a, double b, int liczba_przedzialow, int n, const dane_calki &dane)
 {
     double suma = 0.0;
@@ -93,6 +96,7 @@ double kwadratura_zlozona_wielomian(double a, double b, int liczba_przedzialow, 
 
 // Metoda Simpsona dopasowana do struktury danych wielomianu
 // Obliczanie całki metodą Simpsona.
+//przyjmuje granice przedzialu a i b, liczbe przedzialow, dane calki w postaci referencji
 double SimpsonCalkiWielomian(double a, double b, int n_przedzialow, const dane_calki &dane)
 {
     if (n_przedzialow % 2 != 0)
@@ -121,6 +125,7 @@ double SimpsonCalkiWielomian(double a, double b, int n_przedzialow, const dane_c
 }
 
 // Metoda trapezów dopasowana do struktury danych wielomianu
+//przyjmuje granice przedzialow a i b, liczbe przedzialow, dane calki w postaci referencji
 double metoda_trapezow_wielomian(double a, double b, int n_przedzialow, const dane_calki &dane) 
 {
     double h = (b - a) / n_przedzialow;
@@ -136,6 +141,7 @@ double metoda_trapezow_wielomian(double a, double b, int n_przedzialow, const da
 
 // Wczytuje stopień wielomianu, współczynniki
 // oraz granice całkowania z pliku tekstowego.
+//przyjmuje nazwe pliku tesktowego oraz dane calki w postaci referencji
 bool wczytaj_dane(string nazwa, dane_calki &dane) 
 {
     string tekst;
