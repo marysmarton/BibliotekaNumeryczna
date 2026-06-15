@@ -6,6 +6,7 @@
 using namespace std;
 
 //funkcja testowa 1, przyjmuje parametr x dla ktorego bedzie obliczana wartosc funkcji
+//zwraca wartosc funkcji w tym punkcie
 double funkcja1(double x)
 {
     double funkcja = pow(x, 6.0) - 9.0 * pow(x, 5.0) + 29.0 * pow(x, 4.0) - 39 * pow(x, 3.0) + 23.0 * pow(x, 2.0) - 6.0 * x - 3.0;
@@ -13,6 +14,7 @@ double funkcja1(double x)
 }
 
 //funkcja testowa 2, przyjmuje parametr x dla ktorego bedzie obliczana wartosc funkcji
+//zwraca wartosc funkcji w tym punkcie
 double funkcja2(double x)
 {
     double funkcja = pow(x, 3.0) + cos(x) - 1.0 / x;
@@ -20,6 +22,7 @@ double funkcja2(double x)
 }
 
 //funkcja testowa 3, przyjmuje parametr x dla ktorego bedzie obliczana wartosc funkcji
+//zwraca wartosc funkcji w tym punkcie
 double funkcja3(double x)
 {
     double funkcja = 2.0 * sin(x) * cos(pow(x, 2.0));
@@ -72,7 +75,7 @@ double bisekcja(int n, double a, double b, double epsilon)
             f_a = f_c;
         }
     }
-
+//algorytm zwraca koncowe przyblizenie miejsca zerowego
     cout << "Koncowo przyblizone miejsce zerowe wynosi: " << c << endl;
     return c;
 }
@@ -129,6 +132,6 @@ double false_line(int n, double a, double b, double epsilon)
             f_a = f_xi;
         }
     }
-
+//algorytm zwraca koncowe przyblizenie wartosci miejsca zerowego
     return x_i;
 }
