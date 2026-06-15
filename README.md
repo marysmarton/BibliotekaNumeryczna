@@ -80,3 +80,13 @@ METODA BISEKCJI
  ...
  Osiagnieto wymagana dokladnosc!
 ```
+
+##Funkcja testowa
+W katalogu tests znajduje sie plik test_main.cpp, w ktorym sa testowane najwazniejsze metody calej biblioteki.
+Testy umozliwiają pokazanie zasady działania algorytmów na prostych przykładach oraz sprawdzają, czy algorytm działa poprawnie.
+Aby uruchomić tetsy, należy wpisać odpowiednią komendę w terminal:
+```bash
+g++ test_main.cpp src/horner.cpp src/newton.cpp src/calki.cpp -o testy
+./testy
+```
+W przypadku powodzenia, powinien wyskoczyć komunikat o pomyślnym zakończeniu wzsystkich testów.
