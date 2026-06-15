@@ -16,11 +16,12 @@ struct LagrangePoint
 };
 
 // Funkcja pomocnicza wczytująca liczby z linii tekstu
+// Funkcja pomocnicza wyciagajaca liczby z konkretnej linii tekstu na podstawie podanego prefiksu (np. "xi:")
 vector<double> extractNumbersLagrange(const string& line, const string& prefix) 
 {
     vector<double> numbers;
     size_t pos = line.find(prefix);
-    if (pos == string::npos) return numbers;
+    if (pos == string::npos) return numbers; // Jesli nie znaleziono prefiksu, zwraca pusty wektor
 
     string content = line.substr(pos + prefix.length());
     stringstream ss(content);
@@ -32,26 +33,29 @@ vector<double> extractNumbersLagrange(const string& line, const string& prefix)
     return numbers;
 }
 
+// Algorytm obliczajacy wartosc wielomianu interpolacyjnego Lagrange'a w zadanym punkcie x
 // Algorytm interpolacji Lagrange'a
 double lagrange_wlasciwy(const vector<LagrangePoint>& nodes, double x)
 {
     double result = 0.0;
+    // Glowna petla sumujaca poszczegolne skladniki wielomianu
     for (size_t i = 0; i < nodes.size(); i++) 
     {
-        double term = nodes[i].y;
-        for (size_t j = 0; j < nodes.size(); j++) 
+        double term = nodes[i].y; // Startujemy od wartosci y_i dla danego wezla
+        for (size_t j = 0; j < nodes.size(); j++) // Petla wyznaczajaca iloczyn wielomianow bazowych Lagrange'a (L_i)
         {
-            if (i != j) 
+            if (i != j)  // Pomijamy przypadek, gdy indeksy sa równe (unikamy dzielenia przez zero)
             {
                 term *= (x - nodes[j].x) / (nodes[i].x - nodes[j].x);
             }
         }
-        result += term;
+        result += term; // Dodawanie wyznaczonego skladnika do ostatecznego wyniku
     }
     return result;
 }
 
 // Zapis wyników do pliku CSV (czytelnego dla Excela)
+// Funkcja eksportujaca zestawienie danych do pliku CSV z podzialem na sredniki (format czytelny dla Excela)
 void zapisz_csv(const string& filename, const vector<LagrangePoint>& allData, const vector<LagrangePoint>& nodes) 
 {
     ofstream outFile(filename);
@@ -60,13 +64,13 @@ void zapisz_csv(const string& filename, const vector<LagrangePoint>& allData, co
         cout << "BLAD: Nie mozna utworzyc pliku " << filename << endl;
         return;
     }
-
+// Zapisywanie naglowka kolumn tabeli
     outFile << "x;y_original;y_interpolated;is_node\n";
-
+// Przechodzenie przez wszystkie punkty pomiarowe i wyznaczanie dla nich wartosci zinterpolowanych
     for (const auto& p : allData) 
     {
         double interpY = lagrange_wlasciwy(nodes, p.x);
-
+// Sprawdzanie, czy dany punkt pomiarowy byl wykorzystany jako wezel interpolacji
         bool isNode = false;
         for (const auto& n : nodes) 
         {
@@ -76,7 +80,7 @@ void zapisz_csv(const string& filename, const vector<LagrangePoint>& allData, co
                 break;
             }
         }
-
+// Zapisywanie gotowej linii danych do pliku tekstowego
         outFile << p.x << ";" << p.y << ";" << interpY << ";" << (isNode ? "TAK" : "NIE") << "\n";
     }
 
@@ -84,9 +88,11 @@ void zapisz_csv(const string& filename, const vector<LagrangePoint>& allData, co
     cout << "Pomyslnie zapisano dane do pliku: " << filename << endl;
 }
 
+// Glowna funkcja sterujaca modulem interpolacji Lagrange'a, wywolywana z menu glownego (case 1)
 // Główna funkcja wywoływana przez menu główne
 void interpolacja_lagrange() 
 {
+    // Otwieranie pliku tekstowego z danymi wezlowymi
     ifstream file("data/dane1.txt"); //ścieżka dostosowana do folderu data/
     if (!file) 
     {
@@ -97,7 +103,7 @@ void interpolacja_lagrange()
     string line;
     vector<double> x_values, y_values;
     bool foundSection = false;
-
+// Odczytywanie pliku wejsciowego i poszukiwanie poczatku sekcji pomiarowej numer 5
     while (getline(file, line)) 
     {
         if (line.find("l.p.: 5") != string::npos || line.find("l.p. 5") != string::npos)
@@ -108,6 +114,7 @@ void interpolacja_lagrange()
 
         if (foundSection) 
         {
+            // Wczytywanie wartosci xi oraz f(xi) do odpowiadajacych im tablic dynamicznych
             if (line.find("xi:") != string::npos) 
             {
                 x_values = extractNumbersLagrange(line, "xi:");
@@ -115,26 +122,26 @@ void interpolacja_lagrange()
             else if (line.find("f(xi):") != string::npos)
             {
                 y_values = extractNumbersLagrange(line, "f(xi):");
-                break; 
+                break; // Po odczytaniu kompletu danych przerywamy czytanie pliku
             }
         }
     }
     file.close();
-
+// Przepisywanie rozproszonych wektorow x i y do jednego wektora struktur LagrangePoint
     vector<LagrangePoint> myData;
     size_t dataSize = min(x_values.size(), y_values.size());
     for (size_t i = 0; i < dataSize; i++)
     {
         myData.push_back({ x_values[i], y_values[i] });
     }
-
+// Walidacja poprawnosci wczytania struktury danych
     if (myData.empty()) 
     {
         cout << "BLAD: Nie udalo sie wczytac danych sekcji 5. Sprawdz format pliku." << endl;
         return;
     }
-
     vector<LagrangePoint> nodes;
+    // Wybieranie co piatego punktu z serii jako oficjalnego wezla interpolacji
     for (size_t i = 0; i < myData.size(); i += 5) 
     {
         nodes.push_back(myData[i]);
@@ -146,7 +153,7 @@ void interpolacja_lagrange()
     cout << "Wczytano " << myData.size() << " punktow." << endl;
     cout << "Uzyto " << nodes.size() << " wezlow do interpolacji." << endl;
     cout << "------------------------------------------" << endl;
-
+// Wyswietlanie porownania oryginalnych y z wartosciami wyliczonymi przez algorytm dla pierwszych 15 probek
     for (size_t i = 0; i < min((size_t)15, myData.size()); i++)
     {
         double x = myData[i].x;
@@ -154,7 +161,7 @@ void interpolacja_lagrange()
              << "\t Oryginalne y = " << setw(12) << myData[i].y
              << "\t Interpolacja = " << setw(12) << lagrange_wlasciwy(nodes, x) << endl;
     }
-
+// Uruchomienie eksportu wynikow do pliku wynikowego CSV
     cout << "------------------------------------------" << endl;
     zapisz_csv("wyniki_interpolacji.csv", myData, nodes);
 }
