@@ -8,7 +8,7 @@ using namespace std;
 
 // Funkcja zwracajaca analityczne (dokladne) rozwiazanie rownania rozniczkowego dla czasu t
 double rozwiazanie_dokladne(double t)
-{
+{//przyjmuje za parametr czas t
     double T = 14935000.0 / pow((79951556409.0 * t) / 2.0 + 15625000000.0, 1.0 / 3.0);
     return T;
 }
@@ -20,7 +20,7 @@ double pochodna(double T)
     double beta = 0.0;
     double alfa = -4 * pow(10, -12);
     dT = alfa * (pow(T, 4) - beta); // Rownanie rozniczkowe: dT/dt = alfa * T^4
-    return dT;
+    return dT;//zwraca rownanie rozniczkowe
 }
 
 // Numeryczne rozwiazywanie rownania metoda Heuna (metoda jawna trapezow rzedu 2)
