@@ -2,6 +2,6 @@
 #define LAGRANGE_H
 
 
-void metoda_lagrange();
+void interpolacja_lagrange();
 
 #endif 
