@@ -20,6 +20,7 @@ double potegaNaturalna(const vector<double>& a, double x)
     {
         wynik += a[i] * pow(x, i);
     }
+    //funkcja zwraca wartosc wielomianu w punkcie x
     return wynik;
 }
 
@@ -32,7 +33,7 @@ double horner(const vector<double>& a, double x)
     for (int i = (int)a.size() - 2; i >= 0; i--)
     {
         wynik = wynik * x + a[i];
-    }
+    } //funkcja zwraca wartosc wielomianu w punkcie x
     return wynik;
 }
 
