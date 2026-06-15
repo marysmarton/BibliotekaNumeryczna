@@ -86,7 +86,8 @@ W katalogu tests znajduje sie plik test_main.cpp, w ktorym sa testowane najwazni
 Testy umozliwiają pokazanie zasady działania algorytmów na prostych przykładach oraz sprawdzają, czy algorytm działa poprawnie.
 Aby uruchomić tetsy, należy wpisać odpowiednią komendę w terminal:
 ```bash
-g++ test_main.cpp src/horner.cpp src/newton.cpp src/calki.cpp -o testy
+g++ tests/test_main.cpp -o testy
 ./testy
 ```
 W przypadku powodzenia, powinien wyskoczyć komunikat o pomyślnym zakończeniu wzsystkich testów.
+Program testujący zajmuje się sprawdzeniem najważniejszych funkcji biblioteki: schemat Hornera, metoda newtona - suzkanie miejsc zerowych, metoda siecznych - szukanie miejsc zerowych, interpolacja newtona, calkowanie numeryczne (metoda trapezów).
