@@ -6,17 +6,17 @@
 
 using namespace std;
 
-double funkcja1(double x)
+double funkcja1_newton(double x)
 {
     return exp(-x) * sin(x) + x / 5.0;
 }
 
-double funkcja2(double x)
+double funkcja2_newton(double x)
 {
     return ((x + 1.0) * (x - 1.0)) / (pow(x, 2.0) + 1.0) + 0.2 * cos(x);
 }
 
-double funkcja3(double x)
+double funkcja3_newton(double x)
 {
     return sin(x) * log(pow(x, 2.0) + 1.0);
 }
@@ -126,15 +126,15 @@ void uruchom_metody_newtona_i_siecznych(double x0, int n)
     cout << "=========================================" << endl;
 
     cout << "\n--- Funkcja 1 ---" << endl;
-    if (metoda_newtona(n, x0, wynik, funkcja1, pochodna1)) cout << "-> Wynik koncowy: Pierwiastek = " << wynik << endl;
+    if (metoda_newtona(n, x0, wynik, funkcja1_newton, pochodna1)) cout << "-> Wynik koncowy: Pierwiastek = " << wynik << endl;
     else cout << "-> Wynik koncowy: Nie znaleziono pierwiastka." << endl;
 
     cout << "\n--- Funkcja 2 ---" << endl;
-    if (metoda_newtona(n, x0, wynik, funkcja2, pochodna2)) cout << "-> Wynik koncowy: Pierwiastek = " << wynik << endl;
+    if (metoda_newtona(n, x0, wynik, funkcja2_newton, pochodna2)) cout << "-> Wynik koncowy: Pierwiastek = " << wynik << endl;
     else cout << "-> Wynik koncowy: Nie znaleziono pierwiastka." << endl;
 
     cout << "\n--- Funkcja 3 ---" << endl;
-    if (metoda_newtona(n, x0, wynik, funkcja3, pochodna3)) cout << "-> Wynik koncowy: Pierwiastek = " << wynik << endl;
+    if (metoda_newtona(n, x0, wynik, funkcja3_newton, pochodna3)) cout << "-> Wynik koncowy: Pierwiastek = " << wynik << endl;
     else cout << "-> Wynik koncowy: Nie znaleziono pierwiastka." << endl;
 
     cout << "\n=========================================" << endl;
@@ -142,14 +142,14 @@ void uruchom_metody_newtona_i_siecznych(double x0, int n)
     cout << "=========================================" << endl;
 
     cout << "\n--- Funkcja 1 ---" << endl;
-    if (metoda_siecznych(n, x0, x1, wynik, funkcja1)) cout << "-> Wynik koncowy: Pierwiastek = " << wynik << endl;
+    if (metoda_siecznych(n, x0, x1, wynik, funkcja1_newton)) cout << "-> Wynik koncowy: Pierwiastek = " << wynik << endl;
     else cout << "-> Wynik koncowy: Nie znaleziono pierwiastka." << endl;
 
     cout << "\n--- Funkcja 2 ---" << endl;
-    if (metoda_siecznych(n, x0, x1, wynik, funkcja2)) cout << "-> Wynik koncowy: Pierwiastek = " << wynik << endl;
+    if (metoda_siecznych(n, x0, x1, wynik, funkcja2_newton)) cout << "-> Wynik koncowy: Pierwiastek = " << wynik << endl;
     else cout << "-> Wynik koncowy: Nie znaleziono pierwiastka." << endl;
 
     cout << "\n--- Funkcja 3 ---" << endl;
-    if (metoda_siecznych(n, x0, x1, wynik, funkcja3)) cout << "-> Wynik koncowy: Pierwiastek = " << wynik << endl;
+    if (metoda_siecznych(n, x0, x1, wynik, funkcja3_newton)) cout << "-> Wynik koncowy: Pierwiastek = " << wynik << endl;
     else cout << "-> Wynik koncowy: Nie znaleziono pierwiastka." << endl;
 }
