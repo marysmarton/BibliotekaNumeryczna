@@ -1,6 +1,10 @@
 #include "../include/horner.h"
 #include "../include/newton.h"
 #include "../include/calki.h"
+#include "../src/horner.cpp"       
+#include "../src/newton.cpp"      
+#include "../src/calki.cpp"        
+#include "../src/interpolacja.cpp"
 #include <iostream>
 #include <vector>
 #include <cassert>
