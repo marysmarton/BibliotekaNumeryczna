@@ -8,6 +8,7 @@ using namespace std;
 
 // Funkcja zwracająca rozwiązanie dokładne równania różniczkowego
 // Rozwiązanie dokładne z wyliczoną funkcją z WolframAlpha
+//przyjmuje parametr t dla ktorego jest obliczana wartosc funkcji
 double rozwiazanie_dokladne_euler(double t)
 {
     double T = 14935000.0 / pow((79951556409.0 * t) / 2.0 + 15625000000.0, 1.0 / 3.0);
@@ -16,6 +17,7 @@ double rozwiazanie_dokladne_euler(double t)
 
 // Funkcja wyznaczająca pochodną T'
 // Funkcja obliczająca pochodną T' zgodnie z równaniem różniczkowym
+//przyjmuje funkcje T
 double pochodna_euler(double T)
 {
     double dT = 0.0;
