@@ -6,6 +6,7 @@
 
 using namespace std;
 
+//double x - argument, punkt w ktorym jest obliczana wartosc danej funkcji testowej/pochodnej zadanej funkcji testowej
 //pierwsza funkcja testowa
 double funkcja1_newton(double x)
 {
@@ -43,6 +44,8 @@ double pochodna3(double x)
 }
 
 //Algorytm szukania miejsca zerowego metoda Newtona (stycznych) przy uzyciu pochodnej
+//przyjmuje wskaznik do funkcji testowej, wskanzik do pochodnej funkcji testowej, n - maxksymalna liczba iteracji,
+//x0 - punkt startowy, &wynik - referencja na wynik koncowy, 
 bool metoda_newtona(int n, double x0, double &wynik, double (*f)(double), double(*df)(double))
 {
     double x = x0;
@@ -81,6 +84,9 @@ bool metoda_newtona(int n, double x0, double &wynik, double (*f)(double), double
 }
 
 // Algorytm szukania miejsca zerowego metoda siecznych (nie wymaga znajomosci pochodnej funkcji)
+//przyjmuje wskaznik do funkcji testowej, n- maxksymalna liczba iteracji,
+//x0 - punkt startowy, &wynik - referencja na wynik koncowy,
+//x1 - drugi punkt startowy
 bool metoda_siecznych(int n, double x0, double x1, double &wynik, double(*f)(double))
 {
     double dokladnosc = 1e-7;
