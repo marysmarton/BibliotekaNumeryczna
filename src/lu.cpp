@@ -9,6 +9,7 @@ using namespace std;
 typedef vector<vector<double>> Matrix;
 
 // Funkcja pomocnicza do wyświetlania macierzy
+// Funkcja wyświetlająca zawartość macierzy
 void drukuj_macierz_lu(const Matrix& A) 
 {
     for (const auto& row : A) 
@@ -22,8 +23,9 @@ void drukuj_macierz_lu(const Matrix& A)
 }
 
 // Główna funkcja algorytmu rozkładu LU
+// Funkcja wykonująca rozkład LU oraz rozwiązująca układ równań
 void metoda_LU(string nazwa_pliku)
-{
+{// Otwarcie pliku z danymi wejściowymi
     ifstream file(nazwa_pliku);
     if (!file.is_open())
     {
@@ -34,12 +36,14 @@ void metoda_LU(string nazwa_pliku)
     string dane;
     int N;
     // Pominiecie zbędnych opisów i wczytanie N
+    // Wczytanie rozmiaru układu równań
     file >> dane >> dane >> dane >> dane >> N;
 
     vector<double> b(N);
     Matrix A(N, vector<double>(N));
 
     file >> dane;
+    // Wczytanie wektora wyrazów wolnych b
     for (int i = 0; i < N; i++)
     {
         file >> b[i]; // Wczytywanie wektora b
@@ -47,6 +51,7 @@ void metoda_LU(string nazwa_pliku)
 
     file >> dane;
     // Wczytywanie macierzy A
+    // Wczytanie współczynników macierzy A
     for (int i = 0; i < N; i++)
     {
         for (int j = 0; j < N; j++)
@@ -59,7 +64,7 @@ void metoda_LU(string nazwa_pliku)
     drukuj_macierz_lu(A);
     cout << endl;
     cout << "wektor b: " << endl;
-
+// Inicjalizacja macierzy L i U zerami
     for (int i = 0; i < N; i++)
     {
         cout << b[i] << " ";
@@ -70,6 +75,7 @@ void metoda_LU(string nazwa_pliku)
     Matrix L(N, vector<double>(N, 0.0));
     Matrix U(N, vector<double>(N, 0.0));
 
+    // Wyznaczanie elementów macierzy U
     for (int i = 0; i < N; i++)
     {
         for (int k = i; k < N; k++)
@@ -113,10 +119,11 @@ void metoda_LU(string nazwa_pliku)
     cout << "Macierz U:" << endl;
     drukuj_macierz_lu(U);
 
-    cout << endl << "rozwiazywanie ukladu rownan - metoda eliminacji Gaussa: " << endl;
+    cout << endl << "rozwiazywanie ukladu rownan - metoda LU: " << endl;
 
     // Uklad: Lz = b
     // 1. Rozwiązywanie Lz = b (Podstawianie w przód)
+    // Rozwiązanie układu Lz = b metodą podstawiania w przód
     vector<double> z(N);
     for (int i = 0; i < N; i++) {
         double suma = 0;
@@ -138,19 +145,20 @@ void metoda_LU(string nazwa_pliku)
 
     cout << endl << endl;
     cout << "Rozwiazanie z: " << endl;
+    // Wyświetlenie obliczonego wektora z
     for (int i = 0; i < N; i++)
     {
         cout << "z" << i + 1 << ": " << z[i] << " ";
     }
 
     cout << endl << endl;
-
+// Wyświetlenie końcowego rozwiązania układu
     cout << "Rozwiazanie x: " << endl;
     for (int i = 0; i < N; i++)
     {
         cout << "x" << i + 1 << ": " << x[i] << " ";
     }
-        
+        // Sprawdzenie poprawności rozkładu poprzez obliczenie iloczynu L * U
     Matrix C(N, vector<double>(N, 0.0));
 
     for (int i = 0; i < N; i++) 
@@ -163,6 +171,7 @@ void metoda_LU(string nazwa_pliku)
             }
         }
     }
+    // Wyświetlenie macierzy otrzymanej z iloczynu L i U
     cout << endl << endl;
     cout << "Sprawdzenie: " << endl;
     drukuj_macierz_lu(C);
