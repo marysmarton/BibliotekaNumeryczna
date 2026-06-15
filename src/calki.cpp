@@ -9,6 +9,8 @@
 
 using namespace std;
 
+// Struktura przechowująca dane potrzebne do obliczenia całki:
+// stopień wielomianu, współczynniki oraz granice całkowania.
 struct dane_calki
 {
     int n;             // stopien wielomianu
@@ -18,6 +20,8 @@ struct dane_calki
 };
 
 // Funkcja obliczająca wartość wielomianu w punkcie x na podstawie wczytanych danych
+// Oblicza wartość wielomianu w punkcie x
+// na podstawie współczynników wczytanych z pliku.
 double oblicz_wartosc_wielomianu(double x, const dane_calki &dane)
 {
     double wynik = 0.0;
@@ -28,19 +32,24 @@ double oblicz_wartosc_wielomianu(double x, const dane_calki &dane)
     return wynik;
 }
 
+// Oblicza całkę metodą kwadratury Gaussa
+// dla 2-, 3- lub 4-punktowej reguły.
 // Dwupunktowa, trzypunktowa i czteropunktowa kwadratura Gaussa zaadaptowana dla wielomianu
 double GaussWielomian(double a, double b, int n, const dane_calki &dane)
 {
+    // Wyznaczenie środka i połowy długości przedziału
     double srodek = (a + b) / 2.0; 
     double polowa = (b - a) / 2.0; 
     double wynik = 0.0;
 
+    //dwupunktowa kwadratura Gaussa
     if (n == 2)
     {
         double x1 = 0.5773502692;
         wynik = polowa * (oblicz_wartosc_wielomianu(polowa * (-x1) + srodek, dane) + 
                           oblicz_wartosc_wielomianu(polowa * x1 + srodek, dane)); 
     }
+        //trzypunktowa kwadratura Gaussa
     else if (n == 3)
     {
         double x2 = 0.7745966692;
@@ -50,6 +59,7 @@ double GaussWielomian(double a, double b, int n, const dane_calki &dane)
                           w1 * oblicz_wartosc_wielomianu(polowa * x2 + srodek, dane) + 
                           w2 * oblicz_wartosc_wielomianu(srodek, dane)); 
     }
+        //czteropunktowa kwadratura Gaussa
     else if (n == 4) 
     {
         double x3 = 0.3399810436;
@@ -66,6 +76,8 @@ double GaussWielomian(double a, double b, int n, const dane_calki &dane)
 }
 
 // Kwadratura złożona Gaussa dla wielomianu
+// Realizacja złożonej kwadratury Gaussa
+// poprzez podział przedziału na mniejsze części.
 double kwadratura_zlozona_wielomian(double a, double b, int liczba_przedzialow, int n, const dane_calki &dane)
 {
     double suma = 0.0;
@@ -80,6 +92,7 @@ double kwadratura_zlozona_wielomian(double a, double b, int liczba_przedzialow, 
 }
 
 // Metoda Simpsona dopasowana do struktury danych wielomianu
+// Obliczanie całki metodą Simpsona.
 double SimpsonCalkiWielomian(double a, double b, int n_przedzialow, const dane_calki &dane)
 {
     if (n_przedzialow % 2 != 0)
@@ -87,11 +100,13 @@ double SimpsonCalkiWielomian(double a, double b, int n_przedzialow, const dane_c
         n_przedzialow++;
     }
 
+    // Podział całki na mniejsze przedziały
     double h = (b - a) / n_przedzialow;
     double suma = oblicz_wartosc_wielomianu(a, dane) + oblicz_wartosc_wielomianu(b, dane);
 
     for (int i = 1; i < n_przedzialow; i++)
     {
+        // Metoda Simpsona wymaga parzystej liczby przedziałów
         double x = a + i * h;
         if (i % 2 == 0)
         {
@@ -119,6 +134,8 @@ double metoda_trapezow_wielomian(double a, double b, int n_przedzialow, const da
     return suma * h;
 }
 
+// Wczytuje stopień wielomianu, współczynniki
+// oraz granice całkowania z pliku tekstowego.
 bool wczytaj_dane(string nazwa, dane_calki &dane) 
 {
     string tekst;
@@ -149,6 +166,9 @@ bool wczytaj_dane(string nazwa, dane_calki &dane)
     return true;
 }
 
+// Funkcja główna modułu całkowania:
+// wczytuje dane z pliku i porównuje wyniki
+// różnych metod całkowania numerycznego.
 void metoda_calkowania()
 {
     string nazwa = "data/calka.txt"; 
