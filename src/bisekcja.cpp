@@ -5,21 +5,21 @@
 
 using namespace std;
 
-//funkcja testowa 1
+//funkcja testowa 1, przyjmuje parametr x dla ktorego bedzie obliczana wartosc funkcji
 double funkcja1(double x)
 {
     double funkcja = pow(x, 6.0) - 9.0 * pow(x, 5.0) + 29.0 * pow(x, 4.0) - 39 * pow(x, 3.0) + 23.0 * pow(x, 2.0) - 6.0 * x - 3.0;
     return funkcja;
 }
 
-//funkcja testowa 2
+//funkcja testowa 2, przyjmuje parametr x dla ktorego bedzie obliczana wartosc funkcji
 double funkcja2(double x)
 {
     double funkcja = pow(x, 3.0) + cos(x) - 1.0 / x;
     return funkcja;
 }
 
-//funkcja testowa 3
+//funkcja testowa 3, przyjmuje parametr x dla ktorego bedzie obliczana wartosc funkcji
 double funkcja3(double x)
 {
     double funkcja = 2.0 * sin(x) * cos(pow(x, 2.0));
@@ -27,6 +27,7 @@ double funkcja3(double x)
 }
 
 // Algorytm bisekcji - wyznaczanie miejsca zerowego poprzez wielokrotne dzielenie przedzialu na polowy
+//przyjmuje: n - liczba podzialow miedzy a i b, a - poczatek przedzialu, b - koniec przedzialu, epsilon - tolerancja bledu
 double bisekcja(int n, double a, double b, double epsilon)
 {
     double f_a = funkcja1(a);
@@ -79,6 +80,7 @@ double bisekcja(int n, double a, double b, double epsilon)
 // Algorytm falszywej linii (Regula Falsi)
 // Metoda fałszywej linii (Regula Falsi) - wyznaczanie miejsca zerowego
 // poprzez przecięcie siecznej z osią OX.
+//podobnie przyjmuje parametry jak metoda bisekcji
 double false_line(int n, double a, double b, double epsilon)
 {
     double f_a = funkcja1(a);
