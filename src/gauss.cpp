@@ -13,6 +13,7 @@ typedef vector<vector<double>> Matrix;
 
 // Funkcja pomocnicza – widoczna tylko w tym pliku
 // Funkcja pomocnicza sluzaca do wyswietlania macierzy rozszerzonej w czytelnym formacie tabelarycznym
+//przyjmuje macierz A w postaci referencji jako argument
 void drukuj_macierz(const Matrix& A)
 {
     for (const auto& row : A)
@@ -28,6 +29,7 @@ void drukuj_macierz(const Matrix& A)
 
 // Główna funkcja algorytmu
 // Glowna funkcja realizujaca rozwiazywanie ukladu rownan liniowych metoda eliminacji Gaussa z pliku tekstowego
+//przyjmuje jako argument nazwe pliku tekstowego
 void eliminacja_gaussa(string nazwa_pliku)
 {
     // Otwieranie pliku
