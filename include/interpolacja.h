@@ -2,6 +2,6 @@
 #define INTERPOLACJA_H
 
 
-void metoda_interpolacji();
+void interpolacja_newtona();
 
 #endif 
