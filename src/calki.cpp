@@ -36,7 +36,7 @@ double oblicz_wartosc_wielomianu(double x, const dane_calki &dane)
 // Oblicza całkę metodą kwadratury Gaussa
 // dla 2-, 3- lub 4-punktowej reguły.
 // Dwupunktowa, trzypunktowa i czteropunktowa kwadratura Gaussa zaadaptowana dla wielomianu
-//przyjmuje dane calki przez referencje a takze a - poczatek przedzialu b - koniec przedzialu n - parametr informujacy o tym jaka to kwadratura (ile punktow)
+//przyjmuje dane calki przez referencje a takze a - poczatek przedzialu b - koniec przedzialu n - stopien wielomianu)
 double GaussWielomian(double a, double b, int n, const dane_calki &dane)
 {
     // Wyznaczenie środka i połowy długości przedziału
@@ -80,7 +80,8 @@ double GaussWielomian(double a, double b, int n, const dane_calki &dane)
 // Kwadratura złożona Gaussa dla wielomianu
 // Realizacja złożonej kwadratury Gaussa
 // poprzez podział przedziału na mniejsze części.
-//przyjmuje granice przedzialu a i b, liczbe przedzialow, dane calki w postaci referencji oraz informacje o rodzaju kwadratury (n)
+//przyjmuje granice przedzialu a i b, liczbe przedzialow, dane calki w postaci referencji
+// n - liczba wezlow kwadratury Gaussa
 double kwadratura_zlozona_wielomian(double a, double b, int liczba_przedzialow, int n, const dane_calki &dane)
 {
     double suma = 0.0;
