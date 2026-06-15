@@ -35,6 +35,7 @@ vector<double> extractNumbersLagrange(const string& line, const string& prefix)
 
 // Algorytm obliczajacy wartosc wielomianu interpolacyjnego Lagrange'a w zadanym punkcie x
 // Algorytm interpolacji Lagrange'a
+//przyjmuje punkty przez ktore musi przejsc wielomian oraz punkt x
 double lagrange_wlasciwy(const vector<LagrangePoint>& nodes, double x)
 {
     double result = 0.0;
@@ -56,6 +57,7 @@ double lagrange_wlasciwy(const vector<LagrangePoint>& nodes, double x)
 
 // Zapis wyników do pliku CSV (czytelnego dla Excela)
 // Funkcja eksportujaca zestawienie danych do pliku CSV z podzialem na sredniki (format czytelny dla Excela)
+//przyjmuje nazwe pliku wyjsciowego wszystkie wezly oraz wszystkie punkty
 void zapisz_csv(const string& filename, const vector<LagrangePoint>& allData, const vector<LagrangePoint>& nodes) 
 {
     ofstream outFile(filename);
