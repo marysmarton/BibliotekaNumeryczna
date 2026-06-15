@@ -40,7 +40,7 @@ int main()
     assert(sukces1 == true);
     assert(abs(wynik_newton - 2.0) < 1e-5);
     cout << "[OK] Newton Test 1: Znaleziono pierwiastek bliski 2.0" << endl;
-cout<<" Test 2: Sprawdzenie ochrony przed dzieleniem przez zero (start w x0 = 0, gdzie pochodna 2x = 0)"<,endl;
+cout<<" Test 2: Sprawdzenie ochrony przed dzieleniem przez zero (start w x0 = 0, gdzie pochodna 2x = 0)"<<endl;
     // Test 2: Sprawdzenie ochrony przed dzieleniem przez zero (start w x0 = 0, gdzie pochodna 2x = 0)
     bool sukces2 = metoda_newtona(20, 0.0, wynik_newton, f_test, df_test);
     assert(sukces2 == false); // Powinien zwrocic false z powodu pochodnej rownej 0
