@@ -29,7 +29,7 @@ double oblicz_wartosc_wielomianu(double x, const dane_calki &dane)
     for (int i = 0; i <= dane.n; i++)
     {
         wynik += dane.ai[i] * pow(x, i);
-    }
+    } //funkcja zwraca wartosc wielomianu w tym punkcie
     return wynik;
 }
 
@@ -73,7 +73,7 @@ double GaussWielomian(double a, double b, int n, const dane_calki &dane)
                           w4 * oblicz_wartosc_wielomianu(polowa * (-x4) + srodek, dane) + 
                           w4 * oblicz_wartosc_wielomianu(polowa * x4 + srodek, dane));
     }
-
+//funkcja zwraca wartosc calki obliczonej metoda kwadratury gaussa dla zadanych parametrow
     return wynik;
 }
 
@@ -91,7 +91,7 @@ double kwadratura_zlozona_wielomian(double a, double b, int liczba_przedzialow, 
         double start = a + i * h; 
         double koniec = start + h; 
         suma += GaussWielomian(start, koniec, n, dane);
-    }
+    } //funkcja zwraca wartosc wielomianu
     return suma;
 }
 
@@ -122,6 +122,7 @@ double SimpsonCalkiWielomian(double a, double b, int n_przedzialow, const dane_c
             suma += 4 * oblicz_wartosc_wielomianu(x, dane);
         }
     }
+    //funkcja zwraca wartosc calki obliczonej metoda simpsona
     return (h / 3.0) * suma;
 }
 
