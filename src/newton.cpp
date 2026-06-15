@@ -10,36 +10,46 @@ using namespace std;
 //pierwsza funkcja testowa
 double funkcja1_newton(double x)
 {
+      //funkcja zwraca wartosc tej funkcji w tym punkcie
     return exp(-x) * sin(x) + x / 5.0;
 }
 
-//druga funkcja testowa
+//double x - argument, punkt w ktorym jest obliczana wartosc danej funkcji testowej/pochodnej zadanej funkcji testowej
+//druga funkcja testowa, przyjmuje punkt x w ktorym jest wyznaczana jej wartosc
 double funkcja2_newton(double x)
 {
+      //funkcja zwraca wartosc tej funkcji w tym punkcie
     return ((x + 1.0) * (x - 1.0)) / (pow(x, 2.0) + 1.0) + 0.2 * cos(x);
 }
 
-//trzecia funkcja testowa
+//double x - argument, punkt w ktorym jest obliczana wartosc danej funkcji testowej/pochodnej zadanej funkcji testowej
+//trzecia funkcja testowa, przyjmuje punkt x w ktorym jest wyznaczana jej wartosc
 double funkcja3_newton(double x)
 {
+    //funkcja zwraca wartosc tej funkcji w tym punkcie
     return sin(x) * log(pow(x, 2.0) + 1.0);
 }
 
 //analityczna pochodna pierwszej funkcji
+//przyjmuje punkt z wktorym bedzie obliczana jej wartsc
 double pochodna1(double x)
 {
+    //funkcja zwraca wartosc pochodnej w tym punkcie
     return exp(-x) * (cos(x) - sin(x)) + 0.2;
 }
 
 //analityczna pochodna drugiej funkcji
+//przyjmuje punkt z wktorym bedzie obliczana jej wartsc
 double pochodna2(double x)
-{
+{//funkcja zwraca wartosc pochodnej w tym punkcie
     return (4.0 * x - 0.2 * pow((pow(x, 2.0) + 1.0), 2.0) * sin(x)) / pow((pow(x, 2.0) + 1.0), 2.0);
 }
 
 //analityczna pochodna trzeciej funkcji
+//przyjmuje punkt z wktorym bedzie obliczana jej wartsc
 double pochodna3(double x)
 {
+    //funkcja zwraca wartosc pochodnej w tym punkcie
     return (2.0 * x * sin(x)) / (pow(x, 2.0) + 1.0) + log(pow(x, 2.0) + 1.0) * cos(x);
 }
 
